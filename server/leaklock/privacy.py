@@ -12,6 +12,12 @@ _PEER = re.compile(
     r"peer(?:\s|-)?to(?:\s|-)?peer|peer\s+transfer)\b",
     re.IGNORECASE,
 )
+# UPI, PhonePe, GPay, Paytm, IMPS, and NEFT are person-to-person unless a known bill is named.
+_UPI_RAIL = re.compile(r"\bupi\b|phonepe|phone\s*pe|\bgpay\b|google\s*pay|\bpaytm\b|\bimps\b|\bneft\b", re.IGNORECASE)
+_KNOWN_BILL = re.compile(
+    r"netflix|airtel|\bjio\b|\bvi\b|hotstar|youtube|spotify|amazon|\bamzn\b|\bapple\b|google\s*one|cult\.?\s*fit",
+    re.IGNORECASE,
+)
 _GROCERY = re.compile(
     r"\b(?:grocery|groceries|grocer|supermarket|whole\s*foods|trader\s*joe'?s?|"
     r"kroger|safeway|aldi|publix|wegmans|food\s*lion|albertsons|sprouts|lidl|"
@@ -32,7 +38,7 @@ _CARD_LABEL = re.compile(
 )
 _CARD_GROUPS = re.compile(r"\b\d{4}(?:[ -]\d{4}){2,}\b")
 _LONG_RUN = re.compile(r"\b\d{8,}\b")
-_AMOUNT = re.compile(r"^\$?\s*([+-]?\d+(?:\.\d+)?)$")
+_AMOUNT = re.compile(r"^(?:₹|rs\.?|inr|\$)?\s*([+-]?[\d,]+(?:\.\d+)?)$", re.IGNORECASE)
 
 _INCOMING = {"in", "credit", "cr"}
 _OUTGOING = {"out", "debit", "dr"}
@@ -63,11 +69,11 @@ def filter_statement_line(line: str) -> Charge | None:
     amount_match = _AMOUNT.fullmatch(amount_text)
     if amount_match is None or not re.fullmatch(r"[A-Z]{3}", currency):
         return None
-    amount = float(amount_match.group(1))
+    amount = float(amount_match.group(1).replace(",", ""))
     if direction is not None and direction not in _INCOMING and direction not in _OUTGOING:
         return None
     incoming = amount < 0 or direction in _INCOMING or _INCOMING_PHRASE.search(shop)
-    if incoming or _BALANCE.search(shop) or _PEER.search(shop) or _GROCERY.search(shop):
+    if incoming or _BALANCE.search(shop) or _is_person_transfer(shop) or _GROCERY.search(shop):
         return None
     cleaned = _strip_secrets(shop)
     if not cleaned:
@@ -84,6 +90,22 @@ def _is_iso_date(value: str) -> bool:
     except ValueError:
         return False
     return found.isoformat() == value
+
+
+def _is_person_transfer(shop: str) -> bool:
+    if _PEER.search(shop):
+        return True
+    # A UPI line for Netflix or Airtel is a bill. A UPI line with only a person's name is not.
+    return _UPI_RAIL.search(shop) is not None and _KNOWN_BILL.search(shop) is None
+
+
+def extract_account_number(text: str) -> str | None:
+    """Pull a labeled account number out of source text. Card endings are left alone."""
+    match = _ACCOUNT.search(text)
+    if match is None:
+        return None
+    digits = re.sub(r"\D", "", match.group(0))
+    return digits or None
 
 
 def _strip_secrets(shop: str) -> str:
