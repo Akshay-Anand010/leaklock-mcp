@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="220" viewBox="0 0 880 220" role="img" aria-label="Bank file and email flow into one subscription list">
+  <rect width="880" height="220" fill="#0f1419"/>
+  <rect x="24" y="36" width="220" height="148" rx="12" fill="#1c2430" stroke="#3d4f66"/>
+  <text x="134" y="78" text-anchor="middle" fill="#f2f4f8" font-family="ui-sans-serif, sans-serif" font-size="18">Bank file</text>
+  <text x="134" y="110" text-anchor="middle" fill="#9fb0c3" font-family="ui-sans-serif, sans-serif" font-size="14">HDFC, ICICI, SBI</text>
+  <text x="134" y="132" text-anchor="middle" fill="#9fb0c3" font-family="ui-sans-serif, sans-serif" font-size="14">Axis, Kotak</text>
+  <rect x="330" y="36" width="220" height="148" rx="12" fill="#1c2430" stroke="#3d4f66"/>
+  <text x="440" y="78" text-anchor="middle" fill="#f2f4f8" font-family="ui-sans-serif, sans-serif" font-size="18">Email</text>
+  <text x="440" y="110" text-anchor="middle" fill="#9fb0c3" font-family="ui-sans-serif, sans-serif" font-size="14">Bills, trials,</text>
+  <text x="440" y="132" text-anchor="middle" fill="#9fb0c3" font-family="ui-sans-serif, sans-serif" font-size="14">price-rise notes</text>
+  <rect x="636" y="36" width="220" height="148" rx="12" fill="#123024" stroke="#2f8f62"/>
+  <text x="746" y="78" text-anchor="middle" fill="#f2f4f8" font-family="ui-sans-serif, sans-serif" font-size="18">Subscriptions</text>
+  <text x="746" y="110" text-anchor="middle" fill="#b7e0c8" font-family="ui-sans-serif, sans-serif" font-size="14">Shop, amount, date</text>
+  <text x="746" y="132" text-anchor="middle" fill="#b7e0c8" font-family="ui-sans-serif, sans-serif" font-size="14">Price jumps in INR</text>
+  <path d="M244 110 H310" stroke="#d7dee8" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M550 110 H616" stroke="#d7dee8" stroke-width="2" marker-end="url(#arrow)"/>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6" fill="#d7dee8"/>
+    </marker>
+  </defs>
+</svg>

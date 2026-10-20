@@ -5,6 +5,9 @@ description = "Subconscious, the LeakLock helper. A local MCP server."
 requires-python = ">=3.12"
 dependencies = ["mcp>=1.9,<2", "openpyxl"]
 
+[project.optional-dependencies]
+dev = ["pytest"]
+
 [project.scripts]
 leaklock = "leaklock.server:main"
 
