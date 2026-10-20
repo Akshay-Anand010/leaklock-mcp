@@ -1,11 +1,9 @@
 # Subconscious server
 
-This folder holds the data shapes for Subconscious, the LeakLock helper. A charge is one money line after a statement is imported. A subscription is a repeating payment built from those lines and from billing mail. A descriptor is the raw bank text next to a shop name a person can read.
+Where the tools are: `server/leaklock/server.py` defines the four tools and three resources with FastMCP. From this folder the same file is `leaklock/server.py`.
 
-The JSON schemas describe the same shapes for four tools and three resources. The tools are ingest_financial_statement, sync_billing_communications, analyze_leakage_and_hikes, and generate_advocacy_action. The resources are leaklock://descriptors, leaklock://ledger/subscriptions, and leaklock://ledger/subscriptions/{id}.
+The tools are `ingest_financial_statement`, `sync_billing_communications`, `analyze_leakage_and_hikes`, and `generate_advocacy_action`. The resources are `leaklock://descriptors`, `leaklock://ledger/subscriptions`, and `leaklock://ledger/subscriptions/{id}`.
 
-The privacy filter looks at one raw statement line. It keeps a normal outgoing shop charge and returns the shop text, the amount, the currency, and the date. It drops balance lines, incoming credits, peer-to-peer transfers, and grocery charges. Account numbers and long card numbers are removed from the shop text before that text can come back. The charge has no balance field and no account number field.
+`ingest_financial_statement` reads a local CSV and returns a summary: file name, rows kept, rows skipped, merchant names, earliest date, and latest date. It drops balances, incoming credits, peer transfers, and groceries, and it strips account numbers and long card numbers. xlsx and qfx are not built yet. The other three tools answer that their step is not built yet. The resources are empty until a store exists.
 
-The filter does not read a bank file, talk to email, store rows, write a letter, or start an MCP server. Those later steps are still unbuilt.
-
-Check the shapes with `npx tsc --noEmit` in this folder. Run the filter tests with `node --experimental-strip-types --test src/privacy.test.ts`.
+Run the tests with `python -m pytest` in this folder. Start the server with `python -m leaklock.server`.
