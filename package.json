@@ -1,0 +1,16 @@
+{
+  "name": "subconscious",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A visual page that explains Subconscious, the LeakLock helper, in everyday language.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 43123 --strictPort",
+    "build": "tsc && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 43123 --strictPort"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.3",
+    "vite": "^8.3.4"
+  }
+}

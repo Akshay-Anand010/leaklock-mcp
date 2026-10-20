@@ -1,0 +1,14 @@
+{
+  "name": "subconscious-server",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Type shapes, JSON schemas, and the privacy filter for Subconscious, the LeakLock helper. Later steps are not built yet.",
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test src/privacy.test.ts"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.3"
+  }
+}

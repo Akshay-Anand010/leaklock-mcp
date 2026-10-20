@@ -1,0 +1,24 @@
+{ // Opens the TypeScript settings for the server folder.
+  "compilerOptions": { // Opens the checker settings.
+    "target": "ES2022", // Lets the checker understand modern JavaScript.
+    "module": "NodeNext", // Uses Node's rules for import and export.
+    "moduleResolution": "NodeNext", // Finds imported files the same way Node does.
+    "strict": true, // Turns on the strict family of type checks.
+    "noEmit": true, // Checks types and does not write output files.
+    "skipLibCheck": true, // Skips checks inside library declaration files.
+    "noUnusedLocals": true, // Reports a local name that nothing reads.
+    "noUnusedParameters": true, // Reports a function argument that nothing reads.
+    "forceConsistentCasingInFileNames": true, // Requires import paths to match real file name casing.
+    "exactOptionalPropertyTypes": true, // Keeps a missing field different from a field set to undefined.
+    "verbatimModuleSyntax": true, // Requires type-only imports to be written with the type keyword.
+    "erasableSyntaxOnly": true, // Allows only type syntax that can be erased, which these files use.
+    "moduleDetection": "force", // Treats each file as a module.
+    "allowImportingTsExtensions": true, // Lets the filter import a .ts path so Node can run the tests.
+    "rootDir": "src", // Treats src as the top of this package's code.
+    "types": [] // Loads no ambient type packages, because this step has none.
+  }, // Closes the checker settings.
+  "include": [ // Lists the files the checker should read.
+    "src/**/*.ts", // Reads every TypeScript file under src.
+    "src/**/*.d.ts" // Reads the small note that names the built-in test modules.
+  ] // Closes the file list.
+} // Closes the settings file.

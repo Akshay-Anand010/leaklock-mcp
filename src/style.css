@@ -1,0 +1,768 @@
+/* The colors and type shared by the whole page. */
+:root { /* Open the shared settings. */
+  /* Deep green ink, easy to read on paper. */
+  --ink: #1c2824; /* The main text color. */
+  /* A softer ink for supporting lines. */
+  --muted: #3e4f49; /* Secondary text color. */
+  /* Warm paper behind everything. */
+  --paper: #f3efe6; /* Page background. */
+  /* Cards sit a touch lighter than the paper. */
+  --card: #fffdf8; /* Card background. */
+  /* A quiet line between areas. */
+  --line: #e3d9c8; /* Border color. */
+  /* The green used for marks and the next step. */
+  --green: #145743; /* Accent green. */
+  /* A pale green wash behind the next step. */
+  --green-soft: #e5f3ed; /* Soft accent fill. */
+  /* Clay for a price that went up. */
+  --clay: #7a3e1d; /* Price-jump text. */
+  /* Pale clay behind a price-jump note. */
+  --clay-soft: #f8efe6; /* Price-jump fill. */
+  /* A soft lift so cards are easy to see. */
+  --shadow: 0 16px 40px rgba(48, 36, 18, 0.06); /* Card shadow. */
+} /* Close the shared settings. */
+
+/* Every box includes its padding in its width. */
+*, /* The universal selector starts. */
+*::before, /* Painted extras before an element. */
+*::after { /* Painted extras after an element. */
+  /* Keep widths predictable on a phone. */
+  box-sizing: border-box; /* Include padding in size. */
+} /* Close the box model rule. */
+
+/* The page itself. */
+html { /* Open the document element. */
+  /* Smooth type on both screens. */
+  -webkit-font-smoothing: antialiased; /* Softer letters on WebKit. */
+} /* Close the document element. */
+
+/* The visible canvas. */
+body { /* Open the body. */
+  /* Remove the white gap browsers add. */
+  margin: 0; /* No outer margin. */
+  /* Paper color from edge to edge. */
+  background: var(--paper); /* Use the paper color. */
+  /* A faint warm glow at the top, then plain paper. */
+  background-image: radial-gradient( /* Start a soft glow. */
+    1200px 420px at 10% -10%, /* Place the glow above the title. */
+    rgba(20, 87, 67, 0.08), /* A hint of green. */
+    transparent 60% /* Fade back to paper. */
+  ); /* End the glow. */
+  /* Default letters are a familiar sans. */
+  font-family: "Segoe UI", "Helvetica Neue", sans-serif; /* Body type. */
+  /* Body size stays comfortable on a phone. */
+  font-size: 1.125rem; /* Base size. */
+  /* Lines have room to breathe. */
+  line-height: 1.5; /* Body leading. */
+  /* All normal text uses the ink. */
+  color: var(--ink); /* Body color. */
+} /* Close the body. */
+
+/* The column that holds every section. */
+.page { /* Open the page column. */
+  /* Keep a margin from the screen edge. */
+  width: min(68rem, calc(100% - 2rem)); /* Cap the width. */
+  /* Sit the column in the middle. */
+  margin: 0 auto; /* Center the column. */
+  /* Room above the title and below the last step. */
+  padding: 2.5rem 0 4rem; /* Vertical room. */
+} /* Close the page column. */
+
+/* The opening block. */
+.hero { /* Open the hero. */
+  /* A thin green rule so the page has a start. */
+  border-top: 6px solid var(--green); /* Brand rule. */
+  /* Space under the rule before the nickname. */
+  padding-top: 1.75rem; /* Room under the rule. */
+} /* Close the hero. */
+
+/* The small project nickname. */
+.nickname { /* Open the nickname. */
+  /* No extra gap from the browser. */
+  margin: 0; /* Reset margin. */
+  /* Small, tracked letters. */
+  font-size: 0.95rem; /* Nickname size. */
+  /* A little space between the letters. */
+  letter-spacing: 0.14em; /* Open tracking. */
+  /* Uppercase without shouting in the copy source. */
+  text-transform: uppercase; /* Show as capitals. */
+  /* Green, so it reads as a label. */
+  color: var(--green); /* Nickname color. */
+  /* Sit above the big name. */
+  font-weight: 700; /* Make the label firm. */
+} /* Close the nickname. */
+
+/* The product name. */
+.product-name { /* Open the product name. */
+  /* A book face for the big word. */
+  font-family: Georgia, "Iowan Old Style", Palatino, serif; /* Display face. */
+  /* Huge, but it shrinks on a phone. */
+  font-size: clamp(2.45rem, 10.2vw, 6.5rem); /* Responsive title size. */
+  /* Tight lines so the word feels like a title. */
+  line-height: 0.92; /* Tight title leading. */
+  /* A calm weight, not a poster black. */
+  font-weight: 500; /* Medium display weight. */
+  /* Pull the letters slightly together. */
+  letter-spacing: -0.03em; /* Slightly tighter. */
+  /* Sit close under the nickname. */
+  margin: 0.35rem 0 1rem; /* Title spacing. */
+} /* Close the product name. */
+
+/* The one-sentence purpose. */
+.purpose { /* Open the purpose. */
+  /* Large enough to read across the room. */
+  font-size: clamp(1.5rem, 2.8vw, 2.15rem); /* Purpose size. */
+  /* A book face, matching the title. */
+  font-family: Georgia, "Iowan Old Style", Palatino, serif; /* Purpose face. */
+  /* Keep the sentence from running too wide. */
+  max-width: 18em; /* Measure for the sentence. */
+  /* Comfortable lines for a long sentence. */
+  line-height: 1.25; /* Purpose leading. */
+  /* No leftover heading gap. */
+  margin: 0; /* Reset margin. */
+} /* Close the purpose. */
+
+/* The words inside the purpose that carry the point. */
+.purpose em { /* Open the emphasis. */
+  /* Keep the book face, just mark the phrase. */
+  font-style: italic; /* Italic emphasis. */
+  /* A green underline, not a loud highlight. */
+  text-decoration: underline; /* Show a line. */
+  /* The underline uses the same green as the rule. */
+  text-decoration-color: var(--green); /* Green underline. */
+  /* A little air between the words and the line. */
+  text-underline-offset: 0.14em; /* Drop the underline. */
+} /* Close the emphasis. */
+
+/* A quiet line under the purpose. */
+.stay { /* Open the stay line. */
+  /* Smaller than the purpose. */
+  font-size: 1.05rem; /* Stay-line size. */
+  /* The softer ink. */
+  color: var(--muted); /* Stay-line color. */
+  /* Space above the purpose. */
+  margin: 1rem 0 0; /* Stay-line spacing. */
+} /* Close the stay line. */
+
+/* Every teaching block after the hero. */
+.band { /* Open a band. */
+  /* Room between bands. */
+  margin-top: 3.25rem; /* Space before the band. */
+} /* Close a band. */
+
+/* A small label above a section title. */
+.kicker { /* Open a kicker. */
+  /* No default margin. */
+  margin: 0 0 0.35rem; /* Kicker spacing. */
+  /* Same green label style as the nickname. */
+  color: var(--green); /* Kicker color. */
+  /* Slightly smaller than body. */
+  font-size: 0.95rem; /* Kicker size. */
+  /* Firm, like a section number. */
+  font-weight: 700; /* Kicker weight. */
+  /* A little tracking. */
+  letter-spacing: 0.08em; /* Kicker tracking. */
+  /* Show the number as small caps style. */
+  text-transform: uppercase; /* Kicker case. */
+} /* Close a kicker. */
+
+/* A section title. */
+.band h2 { /* Open a section title. */
+  /* The book face again. */
+  font-family: Georgia, "Iowan Old Style", Palatino, serif; /* Title face. */
+  /* Big, and a bit smaller on a phone. */
+  font-size: clamp(2rem, 4vw, 2.8rem); /* Title size. */
+  /* Tight for a heading. */
+  line-height: 1.1; /* Title leading. */
+  /* Calm weight. */
+  font-weight: 500; /* Title weight. */
+  /* Close to the kicker. */
+  margin: 0 0 0.75rem; /* Title spacing. */
+} /* Close a section title. */
+
+/* The sentence under a section title. */
+.lede { /* Open a lede. */
+  /* Keep it in a comfortable measure. */
+  max-width: 36rem; /* Lede measure. */
+  /* Softer than a title. */
+  color: var(--muted); /* Lede color. */
+  /* A bit larger than tiny notes. */
+  font-size: 1.2rem; /* Lede size. */
+  /* Space before the cards. */
+  margin: 0 0 1.25rem; /* Lede spacing. */
+} /* Close a lede. */
+
+/* The two sources on a phone, stacked. */
+.sources { /* Open the source stack. */
+  /* One column until the screen is wide. */
+  display: grid; /* Use a grid. */
+  /* Even gap between the cards. */
+  gap: 0.9rem; /* Space between sources. */
+} /* Close the source stack. */
+
+/* One source card. */
+.source { /* Open a source card. */
+  /* Light card on paper. */
+  background: var(--card); /* Card fill. */
+  /* A soft edge. */
+  border: 1px solid var(--line); /* Card border. */
+  /* Rounded, calm corners. */
+  border-radius: 1.25rem; /* Card radius. */
+  /* Inner room. */
+  padding: 1.25rem 1.3rem 1.35rem; /* Card padding. */
+  /* A gentle lift. */
+  box-shadow: var(--shadow); /* Card shadow. */
+} /* Close a source card. */
+
+/* The source name, such as Bank file. */
+.source h3 { /* Open a source title. */
+  /* Book face for the card name. */
+  font-family: Georgia, "Iowan Old Style", Palatino, serif; /* Card title face. */
+  /* Clearly bigger than the body. */
+  font-size: 1.85rem; /* Card title size. */
+  /* Calm weight. */
+  font-weight: 500; /* Card title weight. */
+  /* Tight under the card edge. */
+  margin: 0 0 0.4rem; /* Card title spacing. */
+} /* Close a source title. */
+
+/* What you hand that source. */
+.gives { /* Open the gives line. */
+  /* Body size. */
+  font-size: 1.15rem; /* Gives size. */
+  /* No extra gap. */
+  margin: 0; /* Reset margin. */
+} /* Close the gives line. */
+
+/* Why that source is needed. */
+.why { /* Open the why line. */
+  /* Sit apart from the first line. */
+  margin: 0.85rem 0 0; /* Why spacing. */
+  /* Pale green so the reason is easy to spot. */
+  background: var(--green-soft); /* Why fill. */
+  /* Same green as the labels. */
+  color: var(--green); /* Why color. */
+  /* A little inner room. */
+  padding: 0.7rem 0.8rem; /* Why padding. */
+  /* Soft corners inside the card. */
+  border-radius: 0.8rem; /* Why radius. */
+  /* Firm enough to read as the point. */
+  font-weight: 700; /* Why weight. */
+} /* Close the why line. */
+
+/* The picture of two paths becoming one. */
+.flow { /* Open the flow. */
+  /* Stack the picture's pieces. */
+  display: grid; /* Flow grid. */
+  /* Small gaps inside the picture. */
+  gap: 0.35rem; /* Flow gap. */
+} /* Close the flow. */
+
+/* The drawn merge, hidden until the sources sit side by side. */
+.merge { /* Open the merge drawing. */
+  /* Hidden on a phone, where the cards stack. */
+  display: none; /* Hide the drawing. */
+  /* Green strokes from the accent color. */
+  color: var(--green); /* Stroke color. */
+  /* The drawing spans the two cards. */
+  width: 100%; /* Full width. */
+  /* A short height for the lines. */
+  height: 4.6rem; /* Drawing height. */
+} /* Close the merge drawing. */
+
+/* The words between the sources and the list. */
+.meet { /* Open the meet line. */
+  /* Center the words. */
+  text-align: center; /* Center text. */
+  /* Green, like the drawing. */
+  color: var(--green); /* Meet color. */
+  /* Firm. */
+  font-weight: 700; /* Meet weight. */
+  /* A little space. */
+  margin: 0.35rem 0 0.55rem; /* Meet spacing. */
+} /* Close the meet line. */
+
+/* The one subscription list. */
+.subs { /* Open the list card. */
+  /* Same card look as the sources. */
+  background: var(--card); /* List fill. */
+  /* Soft edge. */
+  border: 1px solid var(--line); /* List border. */
+  /* Rounded corners. */
+  border-radius: 1.25rem; /* List radius. */
+  /* Inner room. */
+  padding: 1.15rem 1.2rem 0.4rem; /* List padding. */
+  /* Gentle lift. */
+  box-shadow: var(--shadow); /* List shadow. */
+} /* Close the list card. */
+
+/* The list heading. */
+.subs h3 { /* Open the list heading. */
+  /* Book face. */
+  font-family: Georgia, "Iowan Old Style", Palatino, serif; /* List title face. */
+  /* Big enough to be the destination of the flow. */
+  font-size: 1.7rem; /* List title size. */
+  /* Calm weight. */
+  font-weight: 500; /* List title weight. */
+  /* Tight to the card top. */
+  margin: 0; /* Reset margin. */
+} /* Close the list heading. */
+
+/* A note under the list heading. */
+.subs .note { /* Open the list note. */
+  /* Softer ink. */
+  color: var(--muted); /* Note color. */
+  /* Close to the heading. */
+  margin: 0.25rem 0 0.4rem; /* Note spacing. */
+} /* Close the list note. */
+
+/* The rows themselves. */
+.sub-list { /* Open the row list. */
+  /* Remove the bullet indent. */
+  list-style: none; /* No bullets. */
+  /* Remove default spacing. */
+  margin: 0; /* Reset margin. */
+  /* Remove default padding. */
+  padding: 0; /* Reset padding. */
+} /* Close the row list. */
+
+/* One shop in the list. */
+.sub { /* Open a shop row. */
+  /* Stack the shop facts on a phone. */
+  display: grid; /* Row grid. */
+  /* A little room between facts. */
+  gap: 0.15rem; /* Row gap. */
+  /* A line above each shop. */
+  border-top: 1px solid var(--line); /* Row divider. */
+  /* Room around the words. */
+  padding: 0.9rem 0; /* Row padding. */
+} /* Close a shop row. */
+
+/* The shop name in a row. */
+.shop { /* Open the shop name. */
+  /* Slightly stronger than the note. */
+  font-weight: 700; /* Shop weight. */
+} /* Close the shop name. */
+
+/* What was noticed about that shop. */
+.noticed { /* Open the noticed line. */
+  /* Softer than the shop name. */
+  color: var(--muted); /* Noticed color. */
+} /* Close the noticed line. */
+
+/* A noticed line that is a price jump. */
+.noticed.jump { /* Open a price-jump note. */
+  /* Clay, so a rise is easy to see. */
+  color: var(--clay); /* Jump color. */
+  /* A pale clay chip. */
+  background: var(--clay-soft); /* Jump fill. */
+  /* Fit the chip to the words. */
+  display: inline-block; /* Shrink to the text. */
+  /* A little padding inside the chip. */
+  padding: 0.15rem 0.45rem; /* Jump padding. */
+  /* Soft chip corners. */
+  border-radius: 999px; /* Pill shape. */
+} /* Close a price-jump note. */
+
+/* The next likely charge. */
+.next { /* Open the next charge. */
+  /* Book face for the amount. */
+  font-family: Georgia, "Iowan Old Style", Palatino, serif; /* Amount face. */
+  /* A bit larger than the note. */
+  font-size: 1.15rem; /* Amount size. */
+} /* Close the next charge. */
+
+/* The three findings. */
+.findings { /* Open the findings. */
+  /* One column on a phone. */
+  display: grid; /* Findings grid. */
+  /* Space between findings. */
+  gap: 0.9rem; /* Findings gap. */
+} /* Close the findings. */
+
+/* One finding card. */
+.finding { /* Open a finding. */
+  /* Card fill. */
+  background: var(--card); /* Finding fill. */
+  /* Soft edge. */
+  border: 1px solid var(--line); /* Finding border. */
+  /* Rounded corners. */
+  border-radius: 1.25rem; /* Finding radius. */
+  /* Inner room. */
+  padding: 1.2rem 1.25rem; /* Finding padding. */
+  /* Gentle lift. */
+  box-shadow: var(--shadow); /* Finding shadow. */
+} /* Close a finding. */
+
+/* The finding name. */
+.finding h3 { /* Open a finding title. */
+  /* Book face. */
+  font-family: Georgia, "Iowan Old Style", Palatino, serif; /* Finding title face. */
+  /* Large card title. */
+  font-size: 1.6rem; /* Finding title size. */
+  /* Calm weight. */
+  font-weight: 500; /* Finding title weight. */
+  /* Tight spacing. */
+  margin: 0 0 0.4rem; /* Finding title spacing. */
+} /* Close a finding title. */
+
+/* The finding sentence. */
+.finding p { /* Open a finding sentence. */
+  /* No extra gap. */
+  margin: 0; /* Reset margin. */
+  /* Comfortable size. */
+  font-size: 1.15rem; /* Finding sentence size. */
+} /* Close a finding sentence. */
+
+/* The four match steps. */
+.matches { /* Open the match list. */
+  /* No bullets; the numbers are drawn by us. */
+  list-style: none; /* No default markers. */
+  /* No default spacing. */
+  margin: 0; /* Reset margin. */
+  /* No default padding. */
+  padding: 0; /* Reset padding. */
+  /* Stack the steps. */
+  display: grid; /* Match grid. */
+  /* Space between steps. */
+  gap: 0.75rem; /* Match gap. */
+} /* Close the match list. */
+
+/* One match step. */
+.match { /* Open a match step. */
+  /* Number beside the sentence. */
+  display: grid; /* Step grid. */
+  /* The number column stays narrow. */
+  grid-template-columns: auto 1fr; /* Number then words. */
+  /* Space between number and words. */
+  gap: 0.9rem; /* Step gap. */
+  /* Keep the number with the first line when the sentence wraps. */
+  align-items: start; /* Align to the top. */
+  /* Card fill. */
+  background: var(--card); /* Step fill. */
+  /* Soft edge. */
+  border: 1px solid var(--line); /* Step border. */
+  /* Rounded corners. */
+  border-radius: 1.15rem; /* Step radius. */
+  /* Inner room. */
+  padding: 0.95rem 1.1rem; /* Step padding. */
+} /* Close a match step. */
+
+/* The big step number. */
+.match-no { /* Open a step number. */
+  /* Book face, large. */
+  font-family: Georgia, "Iowan Old Style", Palatino, serif; /* Number face. */
+  /* Big type, as requested. */
+  font-size: 2rem; /* Number size. */
+  /* Green. */
+  color: var(--green); /* Number color. */
+  /* A fixed slot so sentences line up. */
+  width: 1.6rem; /* Number width. */
+  /* Sit the digit on the first line of the sentence. */
+  line-height: 1.35; /* Number leading. */
+} /* Close a step number. */
+
+/* The step sentence. */
+.match p { /* Open a step sentence. */
+  /* No extra gap. */
+  margin: 0; /* Reset margin. */
+  /* Large enough to read quickly. */
+  font-size: 1.3rem; /* Step sentence size. */
+} /* Close a step sentence. */
+
+/* The privacy block. */
+.privacy { /* Open the privacy card. */
+  /* Card fill. */
+  background: var(--card); /* Privacy fill. */
+  /* Soft edge. */
+  border: 1px solid var(--line); /* Privacy border. */
+  /* Rounded corners. */
+  border-radius: 1.25rem; /* Privacy radius. */
+  /* Inner room. */
+  padding: 1.25rem; /* Privacy padding. */
+  /* Gentle lift. */
+  box-shadow: var(--shadow); /* Privacy shadow. */
+} /* Close the privacy card. */
+
+/* The three things chat may see. */
+.allowed { /* Open the allowed list. */
+  /* No bullets. */
+  list-style: none; /* No markers. */
+  /* No default spacing. */
+  margin: 0; /* Reset margin. */
+  /* No default padding. */
+  padding: 0; /* Reset padding. */
+  /* Sit the three chips in a row when they fit. */
+  display: flex; /* Row of chips. */
+  /* Wrap on a narrow phone. */
+  flex-wrap: wrap; /* Allow wrapping. */
+  /* Space between chips. */
+  gap: 0.6rem; /* Chip gap. */
+} /* Close the allowed list. */
+
+/* One allowed fact. */
+.allowed li { /* Open an allowed chip. */
+  /* Pale green chip. */
+  background: var(--green-soft); /* Chip fill. */
+  /* Green words. */
+  color: var(--green); /* Chip color. */
+  /* Firm. */
+  font-weight: 700; /* Chip weight. */
+  /* Large. */
+  font-size: 1.25rem; /* Chip size. */
+  /* Room inside the chip. */
+  padding: 0.7rem 1rem; /* Chip padding. */
+  /* Pill shape. */
+  border-radius: 999px; /* Chip radius. */
+} /* Close an allowed chip. */
+
+/* The line about what stays on the computer. */
+.privacy-line { /* Open the privacy line. */
+  /* Space above the chips. */
+  margin: 1rem 0 0; /* Privacy line spacing. */
+  /* A size you can read without leaning in. */
+  font-size: 1.25rem; /* Privacy line size. */
+  /* Book face for this promise. */
+  font-family: Georgia, "Iowan Old Style", Palatino, serif; /* Privacy line face. */
+  /* Keep the promise on a readable measure. */
+  max-width: 28em; /* Privacy line measure. */
+} /* Close the privacy line. */
+
+/* The four action cards. */
+.actions { /* Open the action grid. */
+  /* One column on a phone. */
+  display: grid; /* Action grid. */
+  /* Space between cards. */
+  gap: 0.9rem; /* Action gap. */
+} /* Close the action grid. */
+
+/* One action button. */
+.action { /* Open an action button. */
+  /* Use the page font, not the browser's button font. */
+  font: inherit; /* Inherit type. */
+  /* Left align, like a card. */
+  text-align: left; /* Left align words. */
+  /* Show that it can be pressed. */
+  cursor: pointer; /* Pointer cursor. */
+  /* Card fill. */
+  background: var(--card); /* Button fill. */
+  /* Ink for the words. */
+  color: var(--ink); /* Button color. */
+  /* Soft edge. */
+  border: 1px solid var(--line); /* Button border. */
+  /* Rounded corners. */
+  border-radius: 1.25rem; /* Button radius. */
+  /* A tall tap target. */
+  padding: 1.15rem 1.2rem; /* Button padding. */
+  /* Gentle lift. */
+  box-shadow: var(--shadow); /* Button shadow. */
+} /* Close an action button. */
+
+/* The action name. */
+.action strong { /* Open the action name. */
+  /* Show the name on its own line. */
+  display: block; /* Own line. */
+  /* Book face. */
+  font-family: Georgia, "Iowan Old Style", Palatino, serif; /* Action face. */
+  /* Large. */
+  font-size: 1.45rem; /* Action size. */
+  /* Calm weight. */
+  font-weight: 500; /* Action weight. */
+  /* Space before the smaller line. */
+  margin-bottom: 0.3rem; /* Action name spacing. */
+} /* Close the action name. */
+
+/* The action's plain explanation. */
+.action span { /* Open the action detail. */
+  /* Softer ink. */
+  color: var(--muted); /* Detail color. */
+  /* Readable size. */
+  font-size: 1.05rem; /* Detail size. */
+} /* Close the action detail. */
+
+/* A button under a finger or a pointer. */
+.action:hover { /* Open the hover state. */
+  /* Green edge so the card wakes up. */
+  border-color: var(--green); /* Hover border. */
+} /* Close the hover state. */
+
+/* A button found with the keyboard. */
+.action:focus-visible { /* Open the focus state. */
+  /* A clear green ring. */
+  outline: 3px solid var(--green); /* Focus ring. */
+  /* A gap between the ring and the card. */
+  outline-offset: 3px; /* Ring offset. */
+} /* Close the focus state. */
+
+/* The line that answers a click. */
+.action-status { /* Open the status line. */
+  /* Room above the buttons. */
+  margin: 0.9rem 0 0; /* Status spacing. */
+  /* At least one line tall, even when empty at first paint. */
+  min-height: 1.5em; /* Reserve a line. */
+  /* Softer ink. */
+  color: var(--muted); /* Status color. */
+} /* Close the status line. */
+
+/* The nine build steps. */
+.steps { /* Open the step list. */
+  /* No default markers. */
+  list-style: none; /* No bullets. */
+  /* No default spacing. */
+  margin: 0; /* Reset margin. */
+  /* No default padding. */
+  padding: 0; /* Reset padding. */
+  /* Stack the steps. */
+  display: grid; /* Step grid. */
+  /* A tight gap. */
+  gap: 0.6rem; /* Step gap. */
+} /* Close the step list. */
+
+/* One build step. */
+.step { /* Open a build step. */
+  /* Name row, then the sentence. */
+  display: grid; /* Build-step grid. */
+  /* A hair of space under the name. */
+  gap: 0.15rem; /* Build-step gap. */
+  /* Card fill. */
+  background: var(--card); /* Build-step fill. */
+  /* Soft edge. */
+  border: 1px solid var(--line); /* Build-step border. */
+  /* Rounded corners. */
+  border-radius: 1rem; /* Build-step radius. */
+  /* Inner room. */
+  padding: 0.8rem 1rem; /* Build-step padding. */
+} /* Close a build step. */
+
+/* The number and the step name on one line. */
+.step-head { /* Open the name line. */
+  /* Number, then the name. */
+  display: flex; /* Name line. */
+  /* Line the digit up with the name. */
+  align-items: center; /* Vertical center. */
+  /* Space between the digit and the name. */
+  gap: 0.75rem; /* Name-line gap. */
+} /* Close the name line. */
+
+/* The step we will do next. */
+.step.is-next { /* Open the next step. */
+  /* Green edge. */
+  border-color: var(--green); /* Next border. */
+  /* Pale green fill. */
+  background: var(--green-soft); /* Next fill. */
+} /* Close the next step. */
+
+/* The step number in the build list. */
+.step-no { /* Open a build number. */
+  /* Book face. */
+  font-family: Georgia, "Iowan Old Style", Palatino, serif; /* Build number face. */
+  /* Large. */
+  font-size: 1.7rem; /* Build number size. */
+  /* Green. */
+  color: var(--green); /* Build number color. */
+  /* A fixed slot. */
+  width: 1.4rem; /* Build number width. */
+  /* Keep the digit from growing the name line. */
+  line-height: 1; /* Tight number. */
+  /* Stop the digit from shrinking on a narrow phone. */
+  flex-shrink: 0; /* Keep the number width. */
+} /* Close a build number. */
+
+/* The name row, which may include a Next mark. */
+.step-name { /* Open the step name row. */
+  /* Name and mark on one line. */
+  display: flex; /* Name row. */
+  /* Wrap the mark under the name on a tiny screen. */
+  flex-wrap: wrap; /* Allow wrap. */
+  /* Line them up. */
+  align-items: center; /* Vertical center. */
+  /* Space between name and mark. */
+  gap: 0.5rem; /* Name gap. */
+  /* Firm. */
+  font-weight: 700; /* Name weight. */
+  /* Slightly larger than body. */
+  font-size: 1.2rem; /* Name size. */
+} /* Close the step name row. */
+
+/* The Next mark. */
+.next-pill { /* Open the Next mark. */
+  /* Green pill. */
+  background: var(--green); /* Pill fill. */
+  /* Paper-colored word. */
+  color: var(--paper); /* Pill text. */
+  /* Small but clear. */
+  font-size: 0.85rem; /* Pill size. */
+  /* A little tracking. */
+  letter-spacing: 0.06em; /* Pill tracking. */
+  /* Capitals. */
+  text-transform: uppercase; /* Pill case. */
+  /* Room inside. */
+  padding: 0.15rem 0.5rem; /* Pill padding. */
+  /* Pill shape. */
+  border-radius: 999px; /* Pill radius. */
+} /* Close the Next mark. */
+
+/* The plain sentence for a build step. */
+.step-detail { /* Open the step sentence. */
+  /* No leftover paragraph gap. */
+  margin: 0; /* Reset margin. */
+  /* Line the sentence up under the step name. */
+  padding-left: 2.15rem; /* Indent past the number. */
+  /* Softer ink. */
+  color: var(--muted); /* Step sentence color. */
+  /* Body size. */
+  font-size: 1.05rem; /* Step sentence size. */
+} /* Close the step sentence. */
+
+/* The closing line. */
+.foot { /* Open the footer. */
+  /* Space above the last band. */
+  margin-top: 3rem; /* Footer spacing. */
+  /* Softer ink. */
+  color: var(--muted); /* Footer color. */
+  /* A quiet size. */
+  font-size: 1rem; /* Footer size. */
+} /* Close the footer. */
+
+/* Wide screens: sources side by side, and roomier pages. */
+@media (min-width: 860px) { /* Open the wide layout. */
+  /* More air above the title on a desktop. */
+  .page { /* Open the wide page column. */
+    /* Extra room at the top. */
+    padding-top: 4.5rem; /* Desktop top space. */
+  } /* Close the wide page column. */
+  /* Two source cards in one row. */
+  .sources { /* Open the wide sources. */
+    /* Two equal columns. */
+    grid-template-columns: 1fr 1fr; /* Side by side. */
+  } /* Close the wide sources. */
+  /* Show the merge drawing once the cards sit side by side. */
+  .merge { /* Open the wide drawing. */
+    /* Show it. */
+    display: block; /* Reveal the drawing. */
+  } /* Close the wide drawing. */
+  /* Three findings in a row. */
+  .findings { /* Open the wide findings. */
+    /* Three equal cards. */
+    grid-template-columns: 1fr 1fr 1fr; /* Three columns. */
+  } /* Close the wide findings. */
+  /* Shop, note, and amount on one line. */
+  .sub { /* Open a wide shop row. */
+    /* Three columns. */
+    grid-template-columns: 1.1fr 1.5fr auto; /* Shop, note, amount. */
+    /* Line them up. */
+    align-items: center; /* Vertical center. */
+    /* More space between columns. */
+    gap: 1rem; /* Wide row gap. */
+  } /* Close a wide shop row. */
+  /* Right-align the amount on a wide row. */
+  .next { /* Open the wide amount. */
+    /* Sit on the right. */
+    text-align: right; /* Right align. */
+  } /* Close the wide amount. */
+  /* Two action cards per row. */
+  .actions { /* Open the wide actions. */
+    /* Two columns. */
+    grid-template-columns: 1fr 1fr; /* Two action columns. */
+  } /* Close the wide actions. */
+} /* Close the wide layout. */
